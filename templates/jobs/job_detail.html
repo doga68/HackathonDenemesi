@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4"><h3>{{ job.title }}</h3>
+<p>{{ job.employer.profile.company_name }} · {{ job.location }}</p>
+<p>{{ job.description }}</p><p><b>Aranan nitelikler:</b> {{ job.required_skills }}</p>
+<p>Sizinle uyum: <span class="badge bg-info">%{{ match }}</span></p>
+{% if existing %}<div class="alert alert-secondary">Bu ilana başvurdunuz ({{ existing.get_status_display }}).</div>
+{% else %}<form method="post">{% csrf_token %}
+<textarea name="message" class="form-control mb-2" rows="3" placeholder="Kısa ön yazı (isteğe bağlı)"></textarea>
+<button class="btn btn-success">Başvur</button></form>{% endif %}</div>
+{% endblock %}

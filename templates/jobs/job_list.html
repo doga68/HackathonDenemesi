@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Açık pozisyonlar</h3><p class="text-muted">Profilindeki niteliklere uyum oranına göre sıralanır.</p>
+{% for j, m, applied in rows %}
+<div class="card p-3 mb-2"><div class="d-flex justify-content-between">
+  <div><h5 class="mb-0">{{ j.title }}</h5><small>{{ j.employer.profile.company_name }} · {{ j.location }}</small>
+  <div>Aranan: {{ j.required_skills }}</div></div>
+  <div class="text-end"><span class="badge bg-info fs-6">%{{ m }} uyum</span><br>
+  <a class="btn btn-sm btn-primary mt-2" href="{% url 'job_detail' j.pk %}">{% if applied %}Başvuruldu{% else %}İncele{% endif %}</a></div>
+</div></div>
+{% empty %}<p>Şu an açık ilan yok.</p>{% endfor %}
+{% endblock %}

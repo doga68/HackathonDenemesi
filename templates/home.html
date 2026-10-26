@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center py-5">
+  <h1 class="display-5">İşverenle iş arayanı buluşturuyoruz</h1>
+  <p class="lead">Oteller ilan açar, nitelikleri uyan adaylar başvurur, İK en uygun kişiyi seçer.</p>
+  <a class="btn btn-primary btn-lg m-1" href="{% url 'register_hr' %}">İşveren olarak kayıt ol</a>
+  <a class="btn btn-success btn-lg m-1" href="{% url 'register_seeker' %}">İş arayan olarak kayıt ol</a>
+  <div class="mt-3"><a href="{% url 'login' %}">Zaten hesabım var</a></div>
+</div>
+{% endblock %}

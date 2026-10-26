@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ job.title }} – Başvurular</h3><p class="text-muted">Aranan: {{ job.required_skills }}</p>
+<table class="table bg-white"><tr><th>Aday</th><th>Nitelikler</th><th>Uyum</th><th>Mesaj</th><th>Durum</th><th></th></tr>
+{% for a, m in rows %}<tr>
+<td>{{ a.applicant.get_full_name|default:a.applicant.username }}<br><small>{{ a.applicant.profile.phone }}</small></td>
+<td>{{ a.applicant.profile.skills }}</td><td><span class="badge bg-info">%{{ m }}</span></td>
+<td>{{ a.message }}</td><td>{{ a.get_status_display }}</td>
+<td class="text-nowrap">
+<form method="post" action="{% url 'decide' a.pk 'accepted' %}" class="d-inline">{% csrf_token %}<button class="btn btn-sm btn-success">Kabul</button></form>
+<form method="post" action="{% url 'decide' a.pk 'rejected' %}" class="d-inline">{% csrf_token %}<button class="btn btn-sm btn-danger">Red</button></form>
+</td></tr>{% empty %}<tr><td colspan="6">Henüz başvuru yok.</td></tr>{% endfor %}</table>
+{% endblock %}

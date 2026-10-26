@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between"><h3>İlanlarım</h3><a class="btn btn-primary" href="{% url 'job_create' %}">+ Yeni ilan</a></div>
+<table class="table bg-white mt-2"><tr><th>Pozisyon</th><th>Aranan nitelikler</th><th>Başvuru</th><th></th></tr>
+{% for j in jobs %}<tr><td>{{ j.title }}</td><td>{{ j.required_skills }}</td><td>{{ j.n }}</td>
+<td><a href="{% url 'applicants' j.pk %}">Başvuruları gör</a></td></tr>
+{% empty %}<tr><td colspan="4">Henüz ilan yok.</td></tr>{% endfor %}</table>
+<div class="d-flex justify-content-between mt-4"><h3>Çalışanlarım</h3><a class="btn btn-outline-primary" href="{% url 'worker_create' %}">+ Çalışan ekle</a></div>
+<table class="table bg-white mt-2"><tr><th>Ad Soyad</th><th>Pozisyon</th><th>Telefon</th></tr>
+{% for w in workers %}<tr><td>{{ w.full_name }}</td><td>{{ w.position }}</td><td>{{ w.phone }}</td></tr>
+{% empty %}<tr><td colspan="3">Henüz çalışan kaydı yok.</td></tr>{% endfor %}</table>
+{% endblock %}
